@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Class Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #0f3460;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #e94560;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #16213e;
+            padding: 10px;
+        }
+
+        nav button {
+            background-color: #e94560;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        nav button:hover {
+            background-color: #1a1a2e;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .announcements {
+            background-color: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .jobs {
+            background-color: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        textarea, select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button.save {
+            margin-top: 10px;
+            background-color: #1a1a2e;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Robotics Class Portal</h1>
+    </header>
+
+    <nav>
+        <button onclick="showSection('announcements')">Announcements</button>
+        <button onclick="showSection('jobs')">Jobs</button>
+    </nav>
+
+    <div class="container">
+        <div id="announcements" class="section announcements">
+            <h2>Announcements</h2>
+            <textarea id="announcementsInput" rows="5" placeholder="Enter announcements here..."></textarea>
+            <button class="save" onclick="saveAnnouncements()">Save Announcements</button>
+            <div id="announcementsDisplay"></div>
+        </div>
+
+        <div id="jobs" class="section jobs" style="display:none;">
+            <h2>Jobs</h2>
+            <select id="jobList">
+                <option value="programmer">Programmer</option>
+                <option value="builder">Builder</option>
+                <option value="designer">Designer</option>
+                <option value="tester">Tester</option>
+            </select>
+            <button class="save" onclick="assignJob()">Assign Job</button>
+            <div id="jobsDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
+            document.getElementById(section).style.display = 'block';
+        }
+
+        function saveAnnouncements() {
+            const announcements = document.getElementById('announcementsInput').value;
+            const display = document.getElementById('announcementsDisplay');
+            display.innerHTML = `<p>${announcements}</p>`;
+        }
+
+        function assignJob() {
+            const selectedJob = document.getElementById('jobList').value;
+            const display = document.getElementById('jobsDisplay');
+            display.innerHTML = `<p>Assigned Job: ${selectedJob}</p>`;
+        }
+    </script>
+</body>
+</html>
